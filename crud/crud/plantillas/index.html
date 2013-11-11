@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block titulo %} Inicio de CRUD {% endblock titulo %}
+
+{% block contenido %}
+<table class="table table-striped">
+        <thead>
+                <tr>
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>Carrera</th>
+                        <th></th>
+                </tr>
+        </thead>
+        <tbody>
+                {% for alumno in alumnos %}
+                        <tr>
+                                <td>{{ alumno.nombre }}</td>
+                                <td>{{ alumno.edad }}</td>
+                                <td>{{ alumno.carrera }}</td>
+                                <td><a href="editar/{{alumno.id}}" class="btn">Editar</a> <a href="borrar/{{alumno.id}}" onClick="calis('{{alumno.nombre}}');" class="btn btn-danger">Borrar</a></td>
+                        </tr>
+                {% empty %}
+                        <tr>
+                                <td colspan="4">No hay alumnos.</td>
+                        </tr>
+                {% endfor %}
+        </tbody>
+</table>
+<a href="add/" class="btn btn-primary">Agregar alumno</a>
+<script type="text/javascript" language="javascript">
+    function calis(link){
+        alert('Borrando al alumno '+link);
+    }
+</script>
+{% endblock contenido %}
